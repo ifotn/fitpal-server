@@ -29,5 +29,16 @@ router.post('/', (req, res) => {
     // send response back
     return res.status(201).json(); // 201: resource created
 });
+/* PUT: /api/v1/exercises/4 => update selected exercise based on id param in url */
+router.put('/:id', (req, res) => {
+    // search array for id in url param
+    const index = exercises.findIndex(e => e.id.toString() == req.params.id);
+    if (index === -1) {
+        return res.status(404).json({ err: 'Exercise Not Found' });
+    }
+    // update name of selected exercise in array
+    exercises[index].name = req.body.name;
+    return res.status(204).json({ msg: 'Exercise Updated' });
+});
 // make router public so other files can access it
 module.exports = router;
