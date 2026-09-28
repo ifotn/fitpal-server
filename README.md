@@ -6,4 +6,4 @@ Setting up a local Express.js REST API with in-memory data
 
 ```npm i express typescript``` - runtime dependencies
 
-```npm i @types/node ts-node --save-dev``` - dev dependencies
+```npm i @types/node ts-node @types/express --save-dev``` - dev dependencies
