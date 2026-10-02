@@ -7,7 +7,7 @@ const exercises = require('./controllers/exercises.controller');
 
 // create new express application
 const app: Application = express();
-app.use(bodyParser.json());
+app.use(express.json()); //bodyParser.json());
 
 // map urls to appropriate controllers
 app.use('/api/v1/exercises', exercises);

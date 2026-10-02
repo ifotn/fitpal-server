@@ -7,7 +7,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 // create router to map url requests to correct methods
 const router = express_1.default.Router();
-;
 let exercises = [
     { id: 1, name: 'Squats' },
     { id: 2, name: 'Rope Jumping' },

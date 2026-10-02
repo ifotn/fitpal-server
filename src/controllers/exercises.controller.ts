@@ -8,7 +8,7 @@ const router: Router = express.Router();
 interface Exercise {
     id: number,
     name: string
-};
+}
 
 let exercises = [
     { id: 1, name: 'Squats' },
