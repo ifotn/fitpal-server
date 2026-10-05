@@ -10,6 +10,10 @@ Setting up a local Express.js REST API with in-memory data
 
 ```npm i body-parser``` - required to read http request body for POST and PUT methods (create and update)
 
+### Lesson 5 Commands
+
+```npm i mongoose``` - data access lib for MongoDB
+
 ## Production API on Render.com
 
 Live API available at https://fitpal-server-k00z.onrender.com
