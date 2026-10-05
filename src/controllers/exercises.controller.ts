@@ -28,14 +28,17 @@ router.get('/', async (req: Request, res: Response) => {
 });
 
 /* POST: /api/v1/exercises => create new exercise */
-router.post('/', (req: Request,  res: Response) => {
+router.post('/', async (req: Request,  res: Response) => {
     // validate request body
     if (!req.body) {
         return res.status(400).json({ err: 'Invalid Request Body' });
     }
 
     // add new exercise to array from request body
-    exercises.push(req.body);
+    //exercises.push(req.body);
+
+    // use model to add new Exercise to db
+    await Exercise.create(req.body);
 
     // send response back
     return res.status(201).json(); // 201: resource created
