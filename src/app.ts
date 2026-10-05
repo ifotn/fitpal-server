@@ -12,8 +12,10 @@ app.use(express.json()); //bodyParser.json());
 // map urls to appropriate controllers
 app.use('/api/v1/exercises', exercises);
 
-// start server
-app.listen(4000);
+// start server.  use random port on Render server w/4000 as fallback
+const port = process.env.PORT || 4000;
 
-// confirm server running
-console.log('Express running on port 4000');
+app.listen(port, () => {
+    console.log(`Express running on port {port}`);
+});
+
