@@ -3,8 +3,8 @@ import express, { Application } from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser"; // to read body of http POST / PUT requests
 
-// local file imports
-const exercises = require('./controllers/exercises.controller');
+// local file imports using .js for runtime
+import exercises from './controllers/exercises.controller.js';
 
 // create new express application
 const app: Application = express();
