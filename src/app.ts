@@ -16,6 +16,6 @@ app.use('/api/v1/exercises', exercises);
 const port = process.env.PORT || 4000;
 
 app.listen(port, () => {
-    console.log(`Express running on port {port}`);
+    console.log(`Express running on port ` + port);
 });
 
