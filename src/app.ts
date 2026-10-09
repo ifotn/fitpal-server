@@ -1,6 +1,8 @@
 // express imports
 import express, { Application } from "express";
 import mongoose from "mongoose";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
 import bodyParser from "body-parser"; // to read body of http POST / PUT requests
 
 // local file imports using .js for runtime
@@ -16,6 +18,22 @@ const db: string = process.env.DB || '';
 mongoose.connect(db,  {})
     .then((res) => console.log('Connected to MongoDB'))
     .catch((err) => console.log(`Connection Error: ${err}`));
+
+// swagger setup for api doc generation
+const swaggerSpec = {
+    definition: {
+        openapi: '3.0.0',
+        info: {
+            title: 'FitPal API',
+            version: '1.0.0'
+        }
+    },
+    apis: ['./dist/controllers/*.js']  // api methods w/YAML comment location
+};
+
+// create new document from these specs
+const openApiSpecs = swaggerJSDoc(swaggerSpec);
+app.use('/api-docs', swaggerUi.serve,  swaggerUi.setup(openApiSpecs));
 
 // map urls to appropriate controllers
 app.use('/api/v1/exercises', exercises);

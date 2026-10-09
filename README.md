@@ -14,6 +14,12 @@ Setting up a local Express.js REST API with in-memory data
 
 ```npm i mongoose``` - data access lib for MongoDB
 
+### Lesson 6 Commands
+
+```npm i swagger-jsdoc swagger-ui-express``` - swagger for runtime api doc serving
+
+```npm i @types/swagger-jsdoc @types/swagger-ui-express --save-dev``` - swagger for dev
+
 ## Production API on Render.com
 
 Live API available at https://fitpal-server-k00z.onrender.com
