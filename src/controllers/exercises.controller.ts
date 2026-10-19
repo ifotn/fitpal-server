@@ -3,6 +3,7 @@ import express, { Request, Response, Router } from "express";
 
 // model import for CRUD
 import Exercise from "../models/exercise.model.js";
+import {readdirSync} from "node:fs";
 
 // create router to map url requests to correct methods
 const router: Router = express.Router();
@@ -172,6 +173,32 @@ router.delete('/:id', async (req: Request, res: Response) => {
 
     await exercise.deleteOne({ _id: req.params.id });
     return res.status(204).json({ msg: 'Exercise Deleted' });
+});
+
+router.post('/:id/sets', async (req: Request,  res: Response) => {
+   // fetch selected exercise by id in url param (like for PUT / GET / DELETE)
+   const exercise = await Exercise.findById(req.params.id);
+
+   if (exercise == null) return res.status(404).json({ err: 'Exercise Not Found' });
+
+   //console.log(req.body);
+
+   try {
+       // use the JS "spread" operator to destructure an array into separate properties ...
+       // then add the set as a child object to the current exercise document
+        exercise.sets.push({
+            ...req.body
+        });
+
+        // commit change to db using mongoose
+        await exercise.save();
+
+        return res.status(201).json(exercise);  // 201: Resource created
+   }
+   catch (error) {
+       // 400: Bad Request
+       return res.status(400).json({ error: JSON.stringify(error) });
+   }
 });
 
 // make router public so other files can access it
