@@ -22,8 +22,12 @@ const router: Router = express.Router();
  *         description: No exercises found
  */
 router.get('/', async (req: Request, res: Response) => {
-    // use Model to retrieve all exercise documents from mongodb
-    const exercises = await Exercise.find();
+    // check request for optional "querystring" (url query) e.g. ?name=yoga
+    // this does a case-sensitive full match (not partial)
+    const filter = req.query;
+
+    // use Model to retrieve exercise documents from mongodb.  may or may not have a filter
+    const exercises = await Exercise.find(filter);
 
     if (exercises.length === 0) return res.status(404).json({ err: 'No exercises found' });
 
