@@ -175,6 +175,47 @@ router.delete('/:id', async (req: Request, res: Response) => {
     return res.status(204).json({ msg: 'Exercise Deleted' });
 });
 
+/**
+ * @swagger
+ * /api/v1/exercises/{id}/sets:
+ *   post:
+ *     tags:
+ *     - Exercise, Set
+ *     summary: updated selected exercise to add child set document
+ *     parameters:
+ *       - name: id
+ *         in: path
+ *         schema:
+ *         type: string
+ *         required: true
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               setCount:
+ *                 type: integer
+ *                 required: true
+ *               reps:
+ *                 type: integer
+ *                 required: true
+ *               weight:
+ *                 type: integer
+ *                 min: 0
+ *               units:
+ *                 type: string
+ *               rest:
+ *                 type: integer
+ *                 min: 0
+ *     responses:
+ *       201:
+ *         description: Child set added
+ *       400:
+ *         description: Bad request
+ *       404:
+ *         description: Not found
+ */
 router.post('/:id/sets', async (req: Request,  res: Response) => {
    // fetch selected exercise by id in url param (like for PUT / GET / DELETE)
    const exercise = await Exercise.findById(req.params.id);
