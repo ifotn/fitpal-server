@@ -23,3 +23,9 @@ Setting up a local Express.js REST API with in-memory data
 ## Production API on Render.com
 
 Live API available at https://fitpal-server-k00z.onrender.com
+
+## Lesson 10 Commands
+
+```npm i cors ``` - cors to allow client app access 
+
+```npm i @types/cors --save-dev``` - cors in dev mode locally

@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 import bodyParser from "body-parser"; // to read body of http POST / PUT requests
+import cors from "cors";
 
 // local file imports using .js for runtime
 import exercises from './controllers/exercises.controller.js';
@@ -18,6 +19,13 @@ const db: string = process.env.DB || '';
 mongoose.connect(db,  {})
     .then((res) => console.log('Connected to MongoDB'))
     .catch((err) => console.log(`Connection Error: ${err}`));
+
+// cors config - allow our react client to make api calls
+app.use(cors({
+    origin: process.env.CLIENT_DOMAIN,
+    methods: 'GET,POST,PUT,DELETE,HEAD,OPTIONS',
+    allowedHeaders: 'Content-Type'
+}));
 
 // swagger setup for api doc generation
 const swaggerSpec = {

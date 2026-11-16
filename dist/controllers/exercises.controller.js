@@ -47,6 +47,7 @@ router.get('/', async (req, res) => {
  *         description: Not Found
  */
 router.get('/:id', async (req, res) => {
+    console.log('ID handler reached:', req.params.id);
     const exercise = await Exercise.findById(req.params.id);
     if (exercise == null)
         return res.status(404).json({ err: 'Exercise Not Found' });
